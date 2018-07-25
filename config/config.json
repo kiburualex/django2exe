@@ -1,0 +1,25 @@
+{
+	"window" : {
+		"title": "Django2exe sample app",
+    	"icon": "djicon.png",
+    	"width": 800,
+    	"height": 600,
+    	"min_width": 800,
+    	"min_height": 600,
+    	"fullscreen_allowed": "true", 
+    	"max_width": 800,
+    	"max_height": 600,
+    	"dev_tools_menu_enabled": "true"
+	},
+	"application" : {
+		"project_dir_name" : "app",
+		"version" : "1.0",
+		"description": "Demo app of django2exe"
+	},
+    "database":{
+        "dbhost":"127.0.0.1",
+        "dbname":"test",
+        "dbuser":"test",
+        "dbpassword":"test"
+    }
+}

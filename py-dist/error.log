@@ -1,0 +1,59 @@
+
+[2018-07-25 14:13:42] Traceback (most recent call last):
+
+  File "test.py", line 336, in <module>
+    "enabled" : dev_tools_menu_enabled
+
+NameError: name 'dev_tools_menu_enabled' is not defined
+
+
+[2018-07-25 14:24:05] Traceback (most recent call last):
+
+  File "test.py", line 188, in closeEvent
+    subprocess.call(['taskkill', '/F', '/T', '/PID', str(info.proc.pid)])
+
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+
+[2018-07-25 14:25:21] Traceback (most recent call last):
+
+  File "test.py", line 188, in closeEvent
+    subprocess.call(['taskkill', '/F', '/T', '/PID', str(info.proc.pid)])
+
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+
+[2018-07-25 14:25:27] Traceback (most recent call last):
+
+  File "test.py", line 188, in closeEvent
+    subprocess.call(['taskkill', '/F', '/T', '/PID', str(info.proc.pid)])
+
+AttributeError: 'NoneType' object has no attribute 'pid'
+
+
+[2018-07-25 16:26:42] Traceback (most recent call last):
+
+  File "run.py", line 288, in <module>
+    mainWindow = MainWindow()
+
+TypeError: __init__() takes exactly 2 arguments (1 given)
+
+
+[2018-07-25 16:27:43] Traceback (most recent call last):
+
+  File "run.py", line 289, in <module>
+    mainWindow = MainWindow(proc)
+
+  File "run.py", line 145, in __init__
+    super(MainWindow, self).__init__(args)
+
+TypeError: QMainWindow(QWidget parent=None, Qt.WindowFlags flags=0): argument 1 has unexpected type 'Popen'
+
+
+[2018-07-25 16:30:17] Traceback (most recent call last):
+
+  File "run.py", line 290, in <module>
+    print proc.id
+
+AttributeError: 'Popen' object has no attribute 'id'
+
