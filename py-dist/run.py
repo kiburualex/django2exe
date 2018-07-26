@@ -29,6 +29,7 @@ class Info:
         self.__file__ = '__file__'
         self.libcef_dll = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                 'libcef.dll')
+        self.splashscreen_img = "splashscreen.png"
 
 
     def processconfiguration(self):
@@ -36,6 +37,7 @@ class Info:
         try:
             with open(config_file_path) as data_file:    
                 data = json.load(data_file)
+                self.splashscreen_img = data["splashscreen_img"]
                 django_app_data = data["application"]
                 self.project_dir_name = django_app_data["project_dir_name"]
                 self.project_dir_path = os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..',self.project_dir_name))
@@ -58,7 +60,9 @@ class Info:
                 self.dbpassword = database_data["dbpassword"]
         except Exception as e:
             print (e)
-            print "Failed Reading Config"
+            print ("Failed Reading Config")
+
+    def check_if_migration_performed(self):
         if os.path.exists('migrate.py'):
             from migrate import Database
             db = Database()
@@ -165,8 +169,8 @@ class MainWindow(QtGui.QMainWindow):
         cefpython.WindowUtils.OnSetFocus(int(self.centralWidget().winId()), 0, 0, 0)
 
     def closeEvent(self, event):
-		subprocess.call(['taskkill', '/F', '/T', '/PID', str(proc.pid)])
-		self.mainFrame.browser.CloseBrowser()
+        subprocess.call(['taskkill', '/F', '/T', '/PID', str(proc.pid)])
+        self.mainFrame.browser.CloseBrowser()
 
 class MainFrame(QtGui.QWidget):
     browser = None
@@ -227,7 +231,7 @@ if __name__ == '__main__':
     info.processconfiguration()
 
     # Create and display the splash screen
-    splash_pix = QPixmap(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'img','moonlight.png')))
+    splash_pix = QPixmap(os.path.abspath(os.path.join(os.path.dirname( __file__ ), '..', 'img', info.splashscreen_img)))
 
     splash = QSplashScreen(splash_pix, Qt.WindowStaysOnTopHint)
     splash.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
@@ -237,7 +241,7 @@ if __name__ == '__main__':
     progressBar = QProgressBar(splash)
     progressBar.setMaximum(10)
     progressBar.setGeometry(0, splash_pix.height() - 50, splash_pix.width(), 20)
-    progressBar.setStyleSheet ("QProgressBar {border: 2px solid beige;border-radius: 5px;margin-left: 14ex;margin-right: 14ex;text-align: center;} QProgressBar::chunk {background-color: #1A87C5;width: 20px;margin: 0.5px;}")
+    progressBar.setStyleSheet ("QProgressBar {border: 2px solid beige;border-radius: 5px;margin-left: 14ex;margin-right: 14ex;text-align: center;} QProgressBar::chunk {background-color: #0A2F3D;width: 20px;margin: 0.5px;}")
 
     splash.show()
     splash.showMessage("<h1><font color='white'>Configuring the server, Please wait ....</font></h1>", Qt.AlignTop | Qt.AlignCenter, Qt.black)
@@ -247,6 +251,7 @@ if __name__ == '__main__':
         t = time.time()
         while time.time() < t + 0.1:
             appscreen.processEvents()
+            info.check_if_migration_performed()
 
     proc = subprocess.Popen(['python','..\\' + info.project_dir_name + '\manage.pyc','runserver','127.0.0.1:8000'])
     print("[pyqt.py] PyQt version: %s" % QtCore.PYQT_VERSION_STR)
