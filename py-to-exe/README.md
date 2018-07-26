@@ -7,9 +7,9 @@
 
 	- type command pyinstaller --onefile --windowed <your_script_name>.py
 		This will create a standalone executable in the dist directory of your script folder. 
-		Don’t worry, if the folder doesn’t exist it will create one automatically.
-		— onefile - Tells PyInstaller to create only one file. 
-			    If you don’t specify this, the libraries will be distributed as separate files  
+		Donâ€™t worry, if the folder doesnâ€™t exist it will create one automatically.
+		â€” onefile - Tells PyInstaller to create only one file. 
+			    If you donâ€™t specify this, the libraries will be distributed as separate files  
                             along with the executable.
-		— windowed- Tells PyInstaller to hide the console.
+		â€” windowed- Tells PyInstaller to hide the console.
 	- copy the .exe file just created and paste it in the root folder
