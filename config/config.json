@@ -1,7 +1,7 @@
 {
 	"window" : {
 		"title": "Django2exe sample app",
-    	"icon": "djicon.png",
+    	"icon": "icon.png",
     	"width": 800,
     	"height": 600,
     	"min_width": 800,
@@ -21,5 +21,6 @@
         "dbname":"test",
         "dbuser":"test",
         "dbpassword":"test"
-    }
+    },
+    "splashscreen_img":"splashscreen.png"
 }
